@@ -4123,4 +4123,3 @@ var issues = [
     "body": "There any way to not hide dropdown when click on `.dropdown-menu` except `a` tags?  "
   }
 ];
-
