@@ -4,10 +4,11 @@ App = Ember.Application.create();
 
 /*Router*/
 App.Router.map(function () {
-  this.resource('issues', function () {
-      this.resource('issue', {path: 'issue/:issue_id'});
+    this.route('issues', {resetNamespace: true}, function () {
+      this.route('issue', {resetNamespace: true, path: 'issue/:issue_id'});
       this.route('new');
-  });
+    });
+
 });
 
 
