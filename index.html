@@ -44,12 +44,17 @@
 
 <script type='text/x-handlebars' data-template-name='issues'>
     <div class="col-md-3">
-      <ul class="nav">
-        {{#link-to 'issues.new' tagName='button' class='btn btn-default btn-block'}}New Issue{{/link-to}}<br/>
-        {{#each model as |issue|}}
-          {{#link-to 'issue' issue tagName='li'}}<a href="#" {{action 'init'}}>{{issue.title}}</a>{{/link-to}}
-        {{/each}}
-      </ul>
+      <div class="panel panel-default">
+        <div class="panel-heading">{{input class="form-control" placeholder='Search' value=search}}</div>
+        <div class="panel-body">
+          <ul class="nav">
+            {{#link-to 'issues.new' tagName='button' class='btn btn-default btn-block'}}New Issue{{/link-to}}<br/>
+            {{#each model as |issue|}}
+              {{#link-to 'issue' issue tagName='li'}}<a href="#" {{action 'init'}}>{{issue.title}}</a>{{/link-to}}
+            {{/each}}
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="col-md-9">
       {{outlet}}

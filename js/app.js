@@ -10,15 +10,26 @@ App.Router.map(function () {
       this.resource('issue', {path: 'issue/:issue_id'});
       this.route('new');
   });
-
   this.route('login');
 });
 
 
 /*Models*/
 App.IssuesRoute = Ember.Route.extend({
-  model: function () {
-    return issues;
+  queryParams: {
+    search: {
+      refreshModel: true
+    }
+  },
+  model: function (params) {
+    if (!params.search){
+      return issues;
+    }else{
+       return issues.filter(function (element) {
+                var item = element.title.toUpperCase().indexOf(params.search.toUpperCase()) > -1 ? element.title : ''
+                return item
+              });
+    }
   }
 });
 
@@ -53,6 +64,7 @@ App.ValidateSession = function (path,isLogin) {
   }else if(!isLogin){
     path.transitionTo('login');
   }
+
 }
 
 App.ApplicationRoute = Ember.Route.extend({
@@ -72,6 +84,7 @@ App.ApplicationRoute = Ember.Route.extend({
 });
 
 
+
 /*Controllers*/
 App.IssuesController = Ember.Controller.extend({
    issue: Ember.inject.controller(),
@@ -80,7 +93,9 @@ App.IssuesController = Ember.Controller.extend({
       var issue = this.get('issue');
           issue.set('editing', false);
     }
-  }
+  },
+  queryParams: ['search'],
+  search: ""
 });
 
 App.IssueController = Ember.Controller.extend({
@@ -142,7 +157,7 @@ App.LoginController = Ember.Controller.extend({
           _applicationController = this.get('application'),
           _values = this.get('model');
 
-      $.post("https://10.3.8.131/login/action", {
+      $.post("https://10.3.8.131:13000/login/action", {
         userOrMail: _values.username,
         password: _values.password,
         rememberMe: _values.rememberMe
@@ -162,6 +177,7 @@ App.LoginController = Ember.Controller.extend({
     }
   }
 });
+
 
 /*New Handlebar Helper*/
 var showdown = new Showdown.converter();
