@@ -1,3 +1,5 @@
+var issues2;
+
 var issues = [
   {
     "url": "https://api.github.com/repos/twbs/bootstrap/issues/12755",

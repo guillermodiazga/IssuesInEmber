@@ -1,6 +1,6 @@
 /*Init App*/
 App = Ember.Application.create({
-/*  LOG_TRANSITIONS: true*/
+  LOG_TRANSITIONS: true
 });
 
 
@@ -11,6 +11,7 @@ App.Router.map(function () {
       this.route('new');
   });
   this.route('login');
+  this.route('pagination');
 });
 
 
@@ -84,6 +85,12 @@ App.ApplicationRoute = Ember.Route.extend({
 });
 
 
+App.PaginationRoute = Ember.Route.extend({
+  model: function() {
+    return
+  }
+});
+
 
 /*Controllers*/
 App.IssuesController = Ember.Controller.extend({
@@ -152,7 +159,7 @@ App.ApplicationController = Ember.Controller.extend({
 App.LoginController = Ember.Controller.extend({
   application : Ember.inject.controller(),
   actions : {
-    signIn : function () {
+    signIn () {
       var _this = this,
           _applicationController = this.get('application'),
           _values = this.get('model');
@@ -174,6 +181,56 @@ App.LoginController = Ember.Controller.extend({
             alert(res.message);
           }
       });
+    }
+  }
+});
+
+App.SelectedIndex = function(element){
+  App.rangeWindowSize = parseInt(element.options[element.selectedIndex].value);
+  App.getIssues(parseInt(document.getElementById('current_page').innerHTML));
+};
+
+App.getIssues = function(rangeStart){
+  debugger;
+}
+
+App.PaginationController = Ember.Controller.extend({
+  rangeStart: 1,
+  actions : {
+    pagination(type){
+      switch (type) {
+        case 'first':
+            if(this.rangeStart > 1){
+              this.set('rangeStart', 1);
+              App.getIssues(this.rangeStart);
+            }
+            break;
+        case 'last':
+            if(this.rangeStart < this.get('model').limit){
+              this.set('rangeStart', this.get('model').limit);
+              App.getIssues(this.rangeStart);
+            }
+            break;
+        case 'previous':
+            if(this.rangeStart > 1){
+              this.set('rangeStart', this.rangeStart - 1);
+              App.getIssues(this.rangeStart);
+            }
+            break;
+        case 'next':
+            if(this.rangeStart < this.get('model').limit){
+              this.set('rangeStart', this.rangeStart + 1);
+              App.getIssues(this.rangeStart);
+            }
+            break;
+        case 'searching':
+            var isRangeStart = parseInt(document.getElementById('rangeStart').value);
+            if(isRangeStart >= 1 && isRangeStart <= this.get('model').limit){
+              this.set('rangeStart', isRangeStart);
+              App.getIssues(this.rangeStart);
+            }
+            break;
+      }
     }
   }
 });

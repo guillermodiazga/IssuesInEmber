@@ -1,0 +1,121 @@
+/* Import Font Awesome CSS */
+@import url("../fonts/awesome/css/font-awesome.min.css");
+
+* {
+  -webkit-transition: all .10s ease-in-out;
+  transition: all .10s ease-in-out;
+}
+
+.filter-pagination, .controls-filter-pagination {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.filter-pagination > li {
+  display: inline-block;
+}
+
+.info_pages {
+  border: 0;
+  font-weight: 300;
+  background-color: transparent;
+  color: #bbb;
+}
+
+.info_pages span:nth-of-type(1) {
+  font-weight: bold;
+  color: #2e6da4;
+}
+
+.info_pages span:nth-of-type(2) {
+  margin: 0 5px;
+}
+
+.icon-prev, .icon-next {
+  color: #3a3a3a;
+  cursor: pointer;
+  width: 10px;
+  text-align: center;
+}
+
+.icon-prev{
+  margin: 0 10px 0 0;
+}
+
+.icon-next{
+  margin: 0 0 0 10px;
+}
+
+.icon-prev:hover, .icon-next:hover{
+  color: #fff;
+  background: #2e6da4;
+}
+
+.filter-page{
+  width: 3em;
+  padding: 2.9px;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  line-height: 1;
+}
+
+.btn-default:hover {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+
+.btn-filter-pagination{
+  margin: 0;
+  font-size: 14px;
+  width: 53px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.btn-filter-pagination-default{
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+
+.btn-filter-pagination-default:hover {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+
+.select-filter-pagination{
+  margin-left: 20px;
+  font-size: 13px;
+  padding: 2.5px 15px;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.controls-filter-pagination{
+  margin-top: 5px;
+}
+
+

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/blockUI.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/pagination.css">
 </head>
 <body>
 
@@ -21,6 +22,7 @@
             <ul class="nav navbar-nav">
               {{#link-to 'index' tagName='li'}}<a href="#">Home</a>{{/link-to}}
               {{#link-to 'issues' tagName='li'}}<a href="#">Issues</a>{{/link-to}}
+              {{#link-to 'pagination' tagName='li'}}<a href="#">Pagination</a>{{/link-to}}
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
@@ -120,6 +122,31 @@
   </div>
 </script>
 
+<script type='text/x-handlebars' data-template-name='pagination'>
+  <ul class='filter-pagination'>
+      <li {{action 'pagination' 'first'}}><i class='fa fa-angle-double-left icon-prev'></i></li>
+      <li {{action 'pagination' 'previous'}}><i class='fa fa-angle-left icon-prev'></i></li>
+      <li class='info_pages'>
+        <span id='current_page'>{{rangeStart}}</span>
+        <span>of</span>
+        <span>{{model.limit}}</span>
+      </li>
+      <li {{action 'pagination' 'next'}}><i class='fa fa-angle-right icon-next'></i></li>
+      <li {{action 'pagination' 'last'}}><i class='fa fa-angle-double-right icon-next'></i></li>
+      <li>
+          <select class='select-filter-pagination' onchange="App.SelectedIndex(this)">
+                <option value='10' selected="selected">10</option>
+                <option value='20'>20</option>
+                <option value='30'>30</option>
+                <option value='40'>40</option>
+                <option value='50'>50</option>
+          </select>
+          <input type='text' class='filter-page' id='rangeStart' value='{{rangeStart}}'/>
+          <input type='button' class='btn-filter-pagination btn-filter-pagination-default' value='GO' id='findPage' {{action 'pagination' 'searching'}}/>
+      </li>
+  </ul>
+</script>
+
 <script src="js/libs/jquery-2.1.4.min.js"></script>
 <script src="js/ajaxSetup.js"></script>
 <script src="js/libs/jquery.blockUI.js"></script>
@@ -129,6 +156,8 @@
 <script src="js/libs/ember.debug.js"></script>
 <script src="js/data.js"></script>
 <script src="js/app.js"></script>
+<script src="js/pagination.js"></script>
+
 
 </body>
 </html>
